@@ -20,3 +20,14 @@ jobs:
       working-directory: ./appui
     - run: flutter build web
       working-directory: ./appui
+      
+    - name: Configure AWS Credentials
+      uses: aws-actions/configure-aws-credentials@v1
+      with:
+        aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY }}
+        aws-secret-access-key: ${{ secrets.AWS_ACCESS_KEY_SECRET }}
+        aws-region: us-east-1
+
+    - name: Sync S3 bucket
+      run: aws s3 sync . s3://csi5112 --delete --cache-control max-age=0 --acl public-read
+      working-directory: ./appui/build/web
