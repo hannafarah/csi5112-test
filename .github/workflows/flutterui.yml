@@ -16,6 +16,7 @@ jobs:
         channel: 'stable'
     - run: flutter --version
     - run: flutter pub get
+      working-directory: ./appui
     - run: flutter test
       working-directory: ./appui
     - run: flutter build web
