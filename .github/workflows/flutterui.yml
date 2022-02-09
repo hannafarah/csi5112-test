@@ -1,4 +1,4 @@
-name: .NET
+name: Flutter Build
 
 on:
   workflow_dispatch:
@@ -17,4 +17,6 @@ jobs:
     - run: flutter --version
     - run: flutter pub get
     - run: flutter test
+      working-directory: ./appui
     - run: flutter build web
+      working-directory: ./appui
